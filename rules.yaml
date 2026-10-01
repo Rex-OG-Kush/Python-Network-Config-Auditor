@@ -3,8 +3,10 @@ cisco_ios:
   forbidden_commands:
     - "transport input telnet"      # Blocks unencrypted terminal access
     - "ip http server"              # Blocks unencrypted web administration
+    - "secret 0 default_password123"# Flags insecure plaintext/default credential loops
   mandatory_commands:
     - "transport input ssh"         # Enforces encrypted management access
+    - "no ip domain-lookup"         # Disables vulnerable router DNS lookups
 
 mikrotik_routeros:
   forbidden_commands:
