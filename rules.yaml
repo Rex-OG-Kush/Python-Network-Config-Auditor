@@ -1,0 +1,14 @@
+# Multi-Vendor Infrastructure Compliance Auditing Matrix
+cisco_ios:
+  forbidden_commands:
+    - "transport input telnet"      # Blocks unencrypted terminal access
+    - "ip http server"              # Blocks unencrypted web administration
+  mandatory_commands:
+    - "transport input ssh"         # Enforces encrypted management access
+
+mikrotik_routeros:
+  forbidden_commands:
+    - "/ip service set telnet disabled=no"  # Alerts if telnet is active
+    - "/user add name=admin"                # Flags insecure default username setup
+  mandatory_commands:
+    - "/ip service set winbox disabled=yes" # Enforces secure API paths
